@@ -4,6 +4,7 @@ package h264reader
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 )
 
@@ -117,6 +118,7 @@ func (reader *H264Reader) bitStreamStartsWithH264Prefix() (prefixLength int, e e
 // and an error if there is incomplete frame data.
 // Returns all nil values when no more NALs are available.
 func (reader *H264Reader) NextNAL() (*NAL, error) {
+	fmt.Printf("I'M TOM'S FORK!!!!!!!!! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n")
 	if !reader.nalPrefixParsed {
 		_, err := reader.bitStreamStartsWithH264Prefix()
 		if err != nil {
@@ -143,8 +145,8 @@ func (reader *H264Reader) NextNAL() (*NAL, error) {
 			nal := newNal(reader.nalBuffer)
 			nal.parseHeader()
 			if nal.UnitType == NalUnitTypeSEI {
-				reader.nalBuffer = nil
-				continue
+				//reader.nalBuffer = nil
+				// 	continue
 			}
 			break
 		}
