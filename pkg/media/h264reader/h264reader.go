@@ -145,8 +145,9 @@ func (reader *H264Reader) NextNAL() (*NAL, error) {
 			nal := newNal(reader.nalBuffer)
 			nal.parseHeader()
 			if nal.UnitType == NalUnitTypeSEI {
-				//reader.nalBuffer = nil
-				// 	continue
+				fmt.Printf("pion.webrt.v3.h264reader - NextNAL() NalUnitTypeSEI found.\n")
+				reader.nalBuffer = nil
+				continue
 			}
 			break
 		}
